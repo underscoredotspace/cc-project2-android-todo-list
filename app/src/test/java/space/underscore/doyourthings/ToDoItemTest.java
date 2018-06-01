@@ -15,13 +15,13 @@ public class ToDoItemTest {
 
     @Test
     public void getStatus() {
-        assertEquals(false, todo.getStatus());
+        assertEquals(false, todo.isDone());
     }
 
     @Test
     public void toggleStatus() {
-        todo.toggleStatus();
-        assertEquals(true, todo.getStatus());
+        todo.toggleDone();
+        assertEquals(true, todo.isDone());
     }
 
     @Test

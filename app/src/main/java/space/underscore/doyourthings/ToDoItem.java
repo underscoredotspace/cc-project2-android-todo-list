@@ -3,7 +3,7 @@ package space.underscore.doyourthings;
 public class ToDoItem {
     private String title;
     private String notes;
-    private boolean status = false;
+    private boolean done = false;
 
 
     public ToDoItem(String title, String notes) {
@@ -11,12 +11,12 @@ public class ToDoItem {
         this.notes = notes;
     }
 
-    public boolean getStatus() {
-        return this.status;
+    public boolean isDone() {
+        return this.done;
     }
 
-    public void toggleStatus() {
-        this.status = !this.status;
+    public void toggleDone() {
+        this.done = !this.done;
     }
 
     public String getTitle() {
