@@ -8,15 +8,32 @@
 
     <CheckBox
         android:id="@+id/todoCheckBox"
-        android:layout_width="274dp"
-        android:layout_height="30dp"
-        android:layout_margin="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="CheckBox"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.029"
+        android:layout_width="70sp"
+        android:layout_height="70sp"
+        android:layout_margin="8dp"
+        android:width="70sp"
+        android:background="?android:attr/listChoiceIndicatorMultiple"
+        android:button="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/todoTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="TextView"
+        android:textAlignment="viewStart"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/todoCheckBox"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="wrap"
+        android:scrollHorizontally="true"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
 </android.support.constraint.ConstraintLayout>

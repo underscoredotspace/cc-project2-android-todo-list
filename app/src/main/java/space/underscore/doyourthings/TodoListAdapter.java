@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,8 +25,8 @@ public class TodoListAdapter extends ArrayAdapter<ToDoItem> {
 
         ToDoItem todo = getItem(position);
 
-        CheckBox todoCheckBox = todoItemView.findViewById(R.id.todoCheckBox);
-        todoCheckBox.setText(todo.getTitle());
+        TextView todoTitle = todoItemView.findViewById(R.id.todoTitle);
+        todoTitle.setText(todo.getTitle());
 
         todoItemView.setTag(todo);
 

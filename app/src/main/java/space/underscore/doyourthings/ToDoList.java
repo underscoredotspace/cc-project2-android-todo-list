@@ -6,7 +6,11 @@ public class ToDoList {
     private ArrayList<ToDoItem> list = new ArrayList<>();
 
     ToDoList() {
-        this.add(new ToDoItem("Get Milk", "Semi-skimmed"));
+        this.add(new ToDoItem("Wicker Basket", "Must be strong"));
+//        this.add(new ToDoItem("Rope", "30ft min"));
+//        this.add(new ToDoItem("Hose", ""));
+//        this.add(new ToDoItem("Spray adapter", "for hose"));
+//        this.add(new ToDoItem("Lotion", ""));
     }
 
     public void add(ToDoItem todo) {
