@@ -1,44 +1,30 @@
 package space.underscore.doyourthings;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
-import android.widget.TextView;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TextView mTextMessage;
-
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-            = new BottomNavigationView.OnNavigationItemSelectedListener() {
-
-        @Override
-        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.navigation_home:
-//                    mTextMessage.setText(R.string.title_all);
-                    return true;
-                case R.id.navigation_dashboard:
-//                    mTextMessage.setText(R.string.title_active);
-                    return true;
-                case R.id.navigation_notifications:
-//                    mTextMessage.setText(R.string.title_done);
-                    return true;
-            }
-            return false;
-        }
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mTextMessage = (TextView) findViewById(R.id.message);
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        ToDoList todos = new ToDoList();
+        ArrayList<ToDoItem> todo = todos.getAll();
+
+        TodoListAdapter todosAdapter = new TodoListAdapter(this, todo);
+
+        ListView todoListView = findViewById(R.id.todoListView);
+        todoListView.setAdapter(todosAdapter);
+    }
+
+    public void onListItemClick(View todoItem) {
+        ToDoItem todo = (ToDoItem) todoItem.getTag();
     }
 
 }

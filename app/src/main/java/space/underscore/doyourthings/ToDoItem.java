@@ -1,6 +1,8 @@
 package space.underscore.doyourthings;
 
-public class ToDoItem {
+import java.io.Serializable;
+
+public class ToDoItem{
     private String title;
     private String notes;
     private boolean done = false;

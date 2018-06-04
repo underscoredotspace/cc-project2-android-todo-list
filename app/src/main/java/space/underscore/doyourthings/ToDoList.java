@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public class ToDoList {
     private ArrayList<ToDoItem> list = new ArrayList<>();
 
+    ToDoList() {
+        this.add(new ToDoItem("Get Milk", "Semi-skimmed"));
+    }
+
     public void add(ToDoItem todo) {
         this.list.add(todo);
     }
