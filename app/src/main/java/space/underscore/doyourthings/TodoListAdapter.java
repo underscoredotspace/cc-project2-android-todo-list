@@ -9,10 +9,11 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TodoListAdapter extends ArrayAdapter<ToDoItem> {
 
-    public TodoListAdapter(Context context, ArrayList<ToDoItem> todos) {
+    public TodoListAdapter(Context context, List<ToDoItem> todos) {
         super(context, 0, todos);
     }
 

@@ -8,10 +8,10 @@
 
     <CheckBox
         android:id="@+id/todoCheckBox"
-        android:layout_width="70sp"
-        android:layout_height="70sp"
+        android:layout_width="60sp"
+        android:layout_height="60sp"
         android:layout_margin="8dp"
-        android:width="70sp"
+        android:width="60sp"
         android:background="?android:attr/listChoiceIndicatorMultiple"
         android:button="@null"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,17 +23,18 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:padding="8dp"
+        android:scrollHorizontally="true"
         android:text="TextView"
         android:textAlignment="viewStart"
-        android:textSize="30sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/todoCheckBox"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_max="wrap"
-        android:scrollHorizontally="true"
-        android:ellipsize="end"
-        android:maxLines="1"/>
+        app:layout_constraintWidth_max="wrap" />
 
 </android.support.constraint.ConstraintLayout>
