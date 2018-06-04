@@ -7,8 +7,8 @@ public class App extends Application {
 
     public static App INSTANCE;
     private static final String DATABASE_NAME = "DoYourThings";
-    private static final String PREFERENCES = "DoYourThings.preferences";
-    private static final String KEY_FORCE_UPDATE = "force_update";
+//    private static final String PREFERENCES = "DoYourThings.preferences";
+//    private static final String KEY_FORCE_UPDATE = "force_update";
 
     private AppDb database;
 

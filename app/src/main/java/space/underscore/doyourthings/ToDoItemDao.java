@@ -10,13 +10,13 @@ import java.util.List;
 
 @Dao
 public interface ToDoItemDao {
-    @Query("select * from ToDoItem")
+    @Query("select * from todoitem")
     List<ToDoItem> getAll();
 
-    @Query("select * from ToDoItem where done = 'f'")
+    @Query("select * from todoitem where done = 'f'")
     List<ToDoItem> getActive();
 
-    @Query("select * from ToDoItem")
+    @Query("select * from todoitem")
     List<ToDoItem> getDone();
 
     @Insert

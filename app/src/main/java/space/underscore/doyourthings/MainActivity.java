@@ -1,11 +1,11 @@
 package space.underscore.doyourthings;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,16 +18,22 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         todoListView = findViewById(R.id.todoListView);
+
         new Thread(new Runnable() {
             @Override
             public void run() {
-                List todos = App.get().getDB().toDoItemDao().getAll();
-                populateList(todos);
+                App app = App.get();
+                AppDb db = app.getDB();
+                ToDoItemDao todo = db.toDoItemDao();
+                List<ToDoItem> todos = todo.getAll();
+
+                fillListView(todos);
             }
-        });
+        }).start();
+
     }
 
-    void populateList(final List todos) {
+    private void fillListView(final List<ToDoItem> todos) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -37,18 +43,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    private void populateAlbums(final List<Album> albums) {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                AlbumAdapter albumAdapter = new AlbumAdapter(getBaseContext(), albums);
-//                albumListView.setAdapter(albumAdapter);
-//            }
-//        });
-//    }
-
-    public void onListItemClick(View todoItem) {
-        ToDoItem todo = (ToDoItem) todoItem.getTag();
+    public void onFabClick(View view) {
+        Intent intent = new Intent(this, TodoItemDetail.class);
+        startActivity(intent);
     }
 
 }
