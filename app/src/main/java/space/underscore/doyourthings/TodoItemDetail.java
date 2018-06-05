@@ -44,7 +44,7 @@ public class TodoItemDetail extends AppCompatActivity {
         return true;
     }
 
-    public boolean onSaveButtonClick(MenuItem item) {
+    public void onSaveButtonClick(MenuItem item) {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -62,12 +62,10 @@ public class TodoItemDetail extends AppCompatActivity {
             goBackToList();
             }
         }).start();
-        return true;
     }
 
     private void goBackToList() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
-
 }
