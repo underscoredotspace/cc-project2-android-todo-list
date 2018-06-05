@@ -13,10 +13,10 @@ public interface ToDoItemDao {
     @Query("select * from todoitem")
     List<ToDoItem> getAll();
 
-    @Query("select * from todoitem where done = 'f'")
+    @Query("select * from todoitem where done = 0")
     List<ToDoItem> getActive();
 
-    @Query("select * from todoitem")
+    @Query("select * from todoitem  where done = 1")
     List<ToDoItem> getDone();
 
     @Insert

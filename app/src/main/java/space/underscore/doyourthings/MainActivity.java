@@ -1,11 +1,15 @@
 package space.underscore.doyourthings;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -14,6 +18,59 @@ public class MainActivity extends AppCompatActivity {
 
     ListView todoListView;
 
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_all:
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            App app = App.get();
+                            AppDb db = app.getDB();
+                            ToDoItemDao todo = db.toDoItemDao();
+                            List<ToDoItem> todos = todo.getAll();
+
+                            fillListView(todos);
+                        }
+                    }).start();
+
+                    return true;
+                case R.id.navigation_todo:
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            App app = App.get();
+                            AppDb db = app.getDB();
+                            ToDoItemDao todo = db.toDoItemDao();
+                            List<ToDoItem> todos = todo.getActive();
+
+                            fillListView(todos);
+                        }
+                    }).start();
+
+                    return true;
+                case R.id.navigation_done:
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            App app = App.get();
+                            AppDb db = app.getDB();
+                            ToDoItemDao todo = db.toDoItemDao();
+                            List<ToDoItem> todos = todo.getDone();
+
+                            fillListView(todos);
+                        }
+                    }).start();
+
+                    return true;
+            }
+            return false;
+        }
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,26 +78,18 @@ public class MainActivity extends AppCompatActivity {
 
         todoListView = findViewById(R.id.todoListView);
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-            App app = App.get();
-            AppDb db = app.getDB();
-            ToDoItemDao todo = db.toDoItemDao();
-            List<ToDoItem> todos = todo.getAll();
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-            fillListView(todos);
-            }
-        }).start();
-
+        navigation.setSelectedItemId(R.id.navigation_all);
     }
 
     private void fillListView(final List<ToDoItem> todos) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-            TodoListAdapter todoListAdapter = new TodoListAdapter(getBaseContext(), todos);
-            todoListView.setAdapter(todoListAdapter);
+                TodoListAdapter todoListAdapter = new TodoListAdapter(getBaseContext(), todos);
+                todoListView.setAdapter(todoListAdapter);
             }
         });
     }
