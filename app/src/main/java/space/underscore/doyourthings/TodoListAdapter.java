@@ -29,7 +29,12 @@ public class TodoListAdapter extends ArrayAdapter<ToDoItem> {
         TextView todoTitle = todoItemView.findViewById(R.id.todoTitle);
         todoTitle.setText(todo.getTitle());
 
-        todoItemView.setTag(todo);
+        CheckBox todoDone = todoItemView.findViewById(R.id.todoCheckBox);
+
+        todoTitle.setTag(todo);
+
+        todoDone.setTag(todo);
+        todoDone.setChecked(todo.isDone());
 
         return todoItemView;
     }

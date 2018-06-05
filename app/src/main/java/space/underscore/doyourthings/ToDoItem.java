@@ -6,7 +6,7 @@ import android.arch.persistence.room.PrimaryKey;
 import java.io.Serializable;
 
 @Entity
-public class ToDoItem  implements Serializable {
+public class ToDoItem implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     private int id;

@@ -14,6 +14,7 @@
         android:width="60sp"
         android:background="?android:attr/listChoiceIndicatorMultiple"
         android:button="@null"
+        android:onClick="onCheckBoxClicked"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -21,10 +22,13 @@
     <TextView
         android:id="@+id/todoTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60sp"
         android:layout_margin="8dp"
+        android:clickable="true"
         android:ellipsize="end"
+        android:gravity="center_vertical"
         android:maxLines="1"
+        android:onClick="onListItemClicked"
         android:padding="8dp"
         android:scrollHorizontally="true"
         android:text="TextView"

@@ -4,7 +4,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -13,6 +17,7 @@ public class TodoItemDetail extends AppCompatActivity {
 
     TextView todoTitle;
     TextView todoNotes;
+    ToDoItem todo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,23 +26,43 @@ public class TodoItemDetail extends AppCompatActivity {
 
         todoTitle = findViewById(R.id.todoTitle);
         todoNotes = findViewById(R.id.todoNotes);
+
+        Intent intent = getIntent();
+        todo = (ToDoItem)intent.getSerializableExtra("todo");
+
+        if (todo != null) {
+            todoTitle.setText(todo.getTitle());
+            todoNotes.setText(todo.getNotes());
+        }
+
     }
 
-    public void onSaveClick(View view) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.detail_menu, menu);
+        return true;
+    }
+
+    public boolean onSaveButtonClick(MenuItem item) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d(this.getClass().toString(), "hello");
-
+            if (todo != null) {
+                todo.setTitle(todoTitle.getText().toString());
+                todo.setNotes(todoNotes.getText().toString());
+                App.get().getDB().toDoItemDao().update(todo);
+            } else {
                 String title = todoTitle.getText().toString();
                 String notes = todoNotes.getText().toString();
                 ToDoItem newTodo = new ToDoItem(title, notes);
-
                 App.get().getDB().toDoItemDao().insert(newTodo);
+            }
 
-                goBackToList();
+            goBackToList();
             }
         }).start();
+        return true;
     }
 
     private void goBackToList() {

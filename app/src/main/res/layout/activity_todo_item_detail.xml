@@ -6,56 +6,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".TodoItemDetail"
-    android:saveEnabled="true">
+    tools:layout_editor_absoluteY="81dp">
 
     <EditText
         android:id="@+id/todoTitle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_height="60dp"
+        android:layout_margin="8dp"
         android:ellipsize="end"
         android:ems="10"
+        android:gravity="center_vertical"
         android:hint="ToDo Title"
-        android:inputType="textPersonName"
+        android:inputType="textCapWords"
         android:maxLines="1"
         android:scrollHorizontally="true"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/todoNotes"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
         android:ems="10"
         android:gravity="top"
         android:hint="ToDo Notes"
-        android:inputType="textMultiLine"
+        android:inputType="textCapSentences|textMultiLine"
         android:minLines="4"
-        android:textAlignment="viewStart"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/todoTitle"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="276dp"
-        android:layout_marginEnd="16dp"
-        android:onClick="onSaveClick"
-        android:text="Save"
+        android:textAlignment="gravity"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/todoTitle" />
+
 </android.support.constraint.ConstraintLayout>
