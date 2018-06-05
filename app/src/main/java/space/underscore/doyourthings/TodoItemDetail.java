@@ -41,6 +41,11 @@ public class TodoItemDetail extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.detail_menu, menu);
+
+        if (todo == null) {
+            menu.findItem(R.id.delete).setVisible(false);
+        }
+
         return true;
     }
 
@@ -67,5 +72,15 @@ public class TodoItemDetail extends AppCompatActivity {
     private void goBackToList() {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+    }
+
+    public void onDeleteButtonClick(MenuItem item) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                App.get().getDB().toDoItemDao().delete(todo);
+                goBackToList();
+            }
+        }).start();
     }
 }

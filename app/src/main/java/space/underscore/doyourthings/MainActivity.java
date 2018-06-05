@@ -24,12 +24,12 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                App app = App.get();
-                AppDb db = app.getDB();
-                ToDoItemDao todo = db.toDoItemDao();
-                List<ToDoItem> todos = todo.getAll();
+            App app = App.get();
+            AppDb db = app.getDB();
+            ToDoItemDao todo = db.toDoItemDao();
+            List<ToDoItem> todos = todo.getAll();
 
-                fillListView(todos);
+            fillListView(todos);
             }
         }).start();
 
@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                TodoListAdapter todoListAdapter = new TodoListAdapter(getBaseContext(), todos);
-                todoListView.setAdapter(todoListAdapter);
+            TodoListAdapter todoListAdapter = new TodoListAdapter(getBaseContext(), todos);
+            todoListView.setAdapter(todoListAdapter);
             }
         });
     }
@@ -57,10 +57,10 @@ public class MainActivity extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                App app = App.get();
-                AppDb db = app.getDB();
-                ToDoItemDao todo = db.toDoItemDao();
-                todo.update(toDoItem);
+            App app = App.get();
+            AppDb db = app.getDB();
+            ToDoItemDao todo = db.toDoItemDao();
+            todo.update(toDoItem);
             }
         }).start();
     }

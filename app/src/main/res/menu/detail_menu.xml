@@ -7,5 +7,11 @@
         android:icon="@drawable/ic_check_white"
         android:onClick="onSaveButtonClick"
         android:title="@string/save"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/delete"
+        android:onClick="onDeleteButtonClick"
+        android:title="@string/delete"
+        app:showAsAction="never" />
 </menu>
