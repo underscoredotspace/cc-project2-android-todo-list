@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:onClick="onListItemClicked">
 
     <CheckBox
         android:id="@+id/todoCheckBox"
@@ -24,12 +25,11 @@
         android:layout_width="0dp"
         android:layout_height="60sp"
         android:layout_margin="8dp"
-        android:clickable="true"
-        android:focusable="true"
+        android:clickable="false"
         android:ellipsize="end"
+        android:focusable="true"
         android:gravity="center_vertical"
         android:maxLines="1"
-        android:onClick="onListItemClicked"
         android:padding="8dp"
         android:scrollHorizontally="true"
         android:textAlignment="gravity"

@@ -31,6 +31,7 @@ public class TodoListAdapter extends ArrayAdapter<ToDoItem> {
 
         CheckBox todoDone = todoItemView.findViewById(R.id.todoCheckBox);
 
+        todoItemView.setTag(todo);
         todoTitle.setTag(todo);
 
         todoDone.setTag(todo);
