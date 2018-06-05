@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -57,11 +58,13 @@ public class TodoItemDetail extends AppCompatActivity {
                 todo.setTitle(todoTitle.getText().toString());
                 todo.setNotes(todoNotes.getText().toString());
                 App.get().getDB().toDoItemDao().update(todo);
+                doToast("updated");
             } else {
                 String title = todoTitle.getText().toString();
                 String notes = todoNotes.getText().toString();
                 ToDoItem newTodo = new ToDoItem(title, notes);
                 App.get().getDB().toDoItemDao().insert(newTodo);
+                doToast("added");
             }
 
             goBackToList();
@@ -79,8 +82,18 @@ public class TodoItemDetail extends AppCompatActivity {
             @Override
             public void run() {
                 App.get().getDB().toDoItemDao().delete(todo);
+                doToast("deleted");
                 goBackToList();
             }
         }).start();
+    }
+
+    private void doToast(final String message) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(TodoItemDetail.this, "Todo " + message, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
