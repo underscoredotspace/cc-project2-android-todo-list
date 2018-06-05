@@ -1,6 +1,8 @@
 package space.underscore.doyourthings;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
             switch (item.getItemId()) {
                 case R.id.navigation_all:
+                    sharedPreferences.edit().putInt("nav", R.id.navigation_all).apply();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -39,6 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_todo:
+                    sharedPreferences.edit().putInt("nav", R.id.navigation_todo).apply();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -53,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
                     return true;
                 case R.id.navigation_done:
+                    sharedPreferences.edit().putInt("nav", R.id.navigation_done).apply();
                     new Thread(new Runnable() {
                         @Override
                         public void run() {
@@ -81,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        navigation.setSelectedItemId(R.id.navigation_all);
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+
+        navigation.setSelectedItemId(sharedPreferences.getInt("nav", R.id.navigation_all));
     }
 
     private void fillListView(final List<ToDoItem> todos) {

@@ -8,4 +8,6 @@
     <string name="title_todo_all">All</string>
     <string name="title_todo_active">Todo</string>
     <string name="title_todo_complete">Complete</string>
+    <string name="preferences">todo</string>
+    <string name="preference_file_key">todo.preference_key</string>
 </resources>
