@@ -5,20 +5,28 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     ListView todoListView;
+    Spinner tagSpinner;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -79,11 +87,51 @@ public class MainActivity extends AppCompatActivity {
     };
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.main_menu, menu);
+
+        MenuItem item = menu.findItem(R.id.tags);
+        tagSpinner = (Spinner) item.getActionView();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, getTags());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        tagSpinner.setAdapter(adapter);
+
+        return true;
+    }
+
+    private ArrayList<String> getTags() {
+        final ArrayList<String> tagStrings = new ArrayList<>();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                List<Tag> tags = App.get().getDB().tagDao().getTags();
+
+                tagStrings.add("All");
+
+                for (Tag tag : tags) {
+                    tagStrings.add(tag.getName());
+                }
+            }
+        }).start();
+
+        return tagStrings;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
         todoListView = findViewById(R.id.todoListView);
+
+        tagSpinner = findViewById(R.id.tags);
+        getTags();
 
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

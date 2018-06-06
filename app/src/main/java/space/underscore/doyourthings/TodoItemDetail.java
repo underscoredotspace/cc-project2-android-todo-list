@@ -1,8 +1,10 @@
 package space.underscore.doyourthings;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -28,10 +30,19 @@ public class TodoItemDetail extends AppCompatActivity {
         todoTitle = findViewById(R.id.todoTitle);
         todoNotes = findViewById(R.id.todoNotes);
 
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setTitle("Add Todo");
+
+
         Intent intent = getIntent();
         todo = (ToDoItem)intent.getSerializableExtra("todo");
 
         if (todo != null) {
+            ab.setTitle("Edit Todo");
             todoTitle.setText(todo.getTitle());
             todoNotes.setText(todo.getNotes());
         }
