@@ -3,6 +3,8 @@ package space.underscore.doyourthings;
 import org.junit.Before;
 import org.junit.Test;
 
+import space.underscore.doyourthings.model.ToDoItem;
+
 import static org.junit.Assert.*;
 
 public class ToDoItemTest {

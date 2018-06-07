@@ -1,22 +1,21 @@
-package space.underscore.doyourthings;
+package space.underscore.doyourthings.view;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import space.underscore.doyourthings.App;
+import space.underscore.doyourthings.R;
+import space.underscore.doyourthings.model.ToDoItem;
 
-public class TodoItemDetail extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity {
 
     TextView todoTitle;
     TextView todoNotes;
@@ -25,7 +24,7 @@ public class TodoItemDetail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_todo_item_detail);
+        setContentView(R.layout.activity_detail);
 
         todoTitle = findViewById(R.id.todoTitle);
         todoNotes = findViewById(R.id.todoNotes);
@@ -103,7 +102,7 @@ public class TodoItemDetail extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(TodoItemDetail.this, "Todo " + message, Toast.LENGTH_SHORT).show();
+                Toast.makeText(DetailActivity.this, "Todo " + message, Toast.LENGTH_SHORT).show();
             }
         });
     }

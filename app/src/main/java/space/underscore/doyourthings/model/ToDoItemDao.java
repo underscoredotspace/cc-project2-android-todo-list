@@ -1,4 +1,4 @@
-package space.underscore.doyourthings;
+package space.underscore.doyourthings.model;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;

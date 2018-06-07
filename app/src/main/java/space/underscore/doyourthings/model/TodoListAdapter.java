@@ -1,4 +1,4 @@
-package space.underscore.doyourthings;
+package space.underscore.doyourthings.model;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,8 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import space.underscore.doyourthings.R;
 
 public class TodoListAdapter extends ArrayAdapter<ToDoItem> {
 
@@ -21,7 +22,7 @@ public class TodoListAdapter extends ArrayAdapter<ToDoItem> {
     public View getView(int position, View todoItemView, ViewGroup parent) {
 
         if (todoItemView == null) {
-            todoItemView = LayoutInflater.from(getContext()).inflate(R.layout.todo_list_item, parent, false);
+            todoItemView = LayoutInflater.from(getContext()).inflate(R.layout.activity_list_item, parent, false);
         }
 
         ToDoItem todo = getItem(position);

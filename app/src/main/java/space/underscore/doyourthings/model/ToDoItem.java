@@ -1,4 +1,4 @@
-package space.underscore.doyourthings;
+package space.underscore.doyourthings.model;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
